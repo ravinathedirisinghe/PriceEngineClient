@@ -1,26 +1,44 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {CartItems} from './cart-items';
 import {PriceRequest} from './price-request';
 import {CartService} from './cart.service';
 import {PriceListResponse} from './price-list-response';
 import {CalculationResponse} from './calculation-response';
+import {NgForm} from '@angular/forms';
 
 @Component({
-    selector: 'cart-index',
+    selector: 'app-cart-index',
     templateUrl: './cart-index.component.html',
     styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
 
-    @Input() cartItems: CartItems;
+    @Input() cartItems1: CartItems;
+    @Input() cartItems2: CartItems;
     @Input() priceRequest: PriceRequest;
     priceListResponse: PriceListResponse;
     calculationResponse: CalculationResponse;
+    @ViewChild('cartForm') cartForm: NgForm;
 
     constructor(private cartService: CartService) {
     }
 
     ngOnInit(): void {
+        if (this.priceRequest == null) {
+            this.priceRequest = new PriceRequest();
+        }
+        if (this.cartItems1 == null) {
+            this.cartItems1 = new CartItems();
+        }
+        if (this.cartItems2 == null) {
+            this.cartItems2 = new CartItems();
+        }
+        if (this.priceListResponse == null) {
+            this.priceListResponse = new PriceListResponse();
+        }
+        if (this.calculationResponse == null) {
+            this.calculationResponse = new CalculationResponse();
+        }
     }
 
     getPrices() {
@@ -30,10 +48,13 @@ export class CartComponent implements OnInit {
     }
 
     calculatePrices(): void {
-        const priceRequest = new PriceRequest();
+        this.cartItems1.productName = 'Penguine Ears'
+        this.cartItems2.productName = 'Horse shoes'
+        this.priceRequest.cartItems.push(this.cartItems1);
+        this.priceRequest.cartItems.push(this.cartItems2);
         // newUser.username = this.form.value.email;
 
-        this.cartService.calculatePrices(priceRequest).subscribe(result => {
+        this.cartService.calculatePrices(this.priceRequest).subscribe(result => {
             this.calculationResponse = result;
         });
     }
