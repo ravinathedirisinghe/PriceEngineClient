@@ -18,6 +18,7 @@ export class CartComponent implements OnInit {
     @Input() priceRequest: PriceRequest;
     priceListResponse: PriceListResponse;
     calculationResponse: CalculationResponse;
+
     @ViewChild('cartForm') cartForm: NgForm;
 
     constructor(private cartService: CartService) {
@@ -48,10 +49,13 @@ export class CartComponent implements OnInit {
     }
 
     calculatePrices(): void {
-        this.cartItems1.productName = 'Penguine Ears'
-        this.cartItems2.productName = 'Horse shoes'
+        const cartItems: any = [];
+        this.priceRequest.cartItems = cartItems;
+        this.cartItems1.productName = 'Penguin-ears'
+        this.cartItems2.productName = 'Horseshoe'
         this.priceRequest.cartItems.push(this.cartItems1);
         this.priceRequest.cartItems.push(this.cartItems2);
+        this.priceRequest.customerId = '1';
         // newUser.username = this.form.value.email;
 
         this.cartService.calculatePrices(this.priceRequest).subscribe(result => {

@@ -17,13 +17,13 @@ export class CartService {
     }
 
     calculatePrices(priceRequest: PriceRequest): Observable<CalculationResponse> {
-        return this.http.post('localhost:8080/api' + '/getPricing/calculate', priceRequest, {headers: null})
-            .pipe(map(response => response as CalculationResponse));
+        const url = 'http://localhost:8080/api/calculate';
+        return this.http.post(url, {priceRequest }) .pipe(map(response => response as CalculationResponse));
     }
 
     getPrices(): Observable<PriceListResponse> {
-        return this.http.get('localhost:8080/api' + '/getPricing/calculate', {headers: null})
-            .pipe(map(response => response as PriceListResponse));
+        const url = 'http://localhost:8080/api/price-list';
+        return this.http.get(url).pipe(map(response => response as PriceListResponse));
     }
 
 }
