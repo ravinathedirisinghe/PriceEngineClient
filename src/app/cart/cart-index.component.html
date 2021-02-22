@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header card-header-danger">
-                        <h4 class="card-title">Penguine Ears</h4>
+                        <h4 class="card-title">Shop with us</h4>
                         <p class="card-category">Calculatae you price here...</p>
                     </div>
                     <div class="card-body">
@@ -35,7 +35,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Total Price (disabled)" disabled type="text"
+                                        <input matInput placeholder="Total Price " disabled type="text" ngModel name="q"
                                                [value]="calculationResponse.totalPrice">
                                     </mat-form-field>
                                 </div>
@@ -54,46 +54,7 @@
     </div>
 </div>
 
-<!--<div class="main-content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title">Horse shoe</h4>
-                        <p class="card-category">Calculatae you price here...</p>
-                    </div>
-                    <div class="card-body">
-                        <form>
 
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Number Of Items" type="text" name="noofitems2"
-                                               [(ngModel)]="cartItems2.numberOfSingleUnits" #Noofitems2="ngModel">
-                                    </mat-form-field>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <mat-form-field class="example-full-width">
-                                        <input matInput placeholder="Total Price (disabled)" disabled type="text">
-                                    </mat-form-field>
-                                </div>
-                            </div>
-
-                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Calculate Price
-                            </button>
-                            <div class="clearfix"></div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>-->
 
 
 
